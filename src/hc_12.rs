@@ -322,7 +322,7 @@ impl Hc12<'_, Async> {
 
         self.uart.write_bytes(command.as_bytes())?;
         self.uart.flush_async().await?;
-        Timer::after_millis(80).await;
+        Timer::after_millis(200).await;
 
         let bytes_read = self.uart.read_buffered_bytes(&mut buffer)?;
         self.set.set_high();
