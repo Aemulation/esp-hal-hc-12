@@ -266,7 +266,7 @@ impl Hc12<'_, Blocking> {
         let mut splitted = result.split(",");
         if splitted
             .next()
-            .is_none_or(|result| result.starts_with(expected_response.as_str()))
+            .is_none_or(|result| !result.starts_with(expected_response.as_str()))
         {
             return Err(Hc12Error::TransmissionMode);
         }
@@ -402,7 +402,7 @@ impl Hc12<'_, Async> {
         let mut splitted = result.split(",");
         if splitted
             .next()
-            .is_none_or(|result| result.starts_with(expected_response.as_str()))
+            .is_none_or(|result| !result.starts_with(expected_response.as_str()))
         {
             return Err(Hc12Error::TransmissionMode);
         }
