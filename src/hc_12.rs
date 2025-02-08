@@ -119,7 +119,7 @@ pub struct Hc12<'d, Dm: esp_hal::DriverMode> {
     set: OutputOpenDrain<'d>,
 }
 
-impl<'d, Dm: DriverMode> Hc12<'d, Dm> {
+impl<Dm: DriverMode> Hc12<'_, Dm> {
     pub fn read_buffered(&mut self, buffer: &mut [u8]) -> Result<usize, esp_hal::uart::Error> {
         self.uart.read_buffered_bytes(buffer)
     }
