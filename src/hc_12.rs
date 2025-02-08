@@ -397,7 +397,12 @@ impl Hc12<'_, Async> {
         let result = self.send_command(&command).await?;
 
         let mut expected_response = String::<14>::new();
-        write!(expected_response, "OK+FU{}", u32::from(transmission_mode)).unwrap();
+        write!(
+            expected_response,
+            "OK+FU{}\r\n",
+            u32::from(transmission_mode)
+        )
+        .unwrap();
 
         let mut splitted = result.split(",");
         if splitted
